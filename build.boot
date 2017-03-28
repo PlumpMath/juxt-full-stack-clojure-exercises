@@ -1,4 +1,4 @@
-;; Copyright © 2016, JUXT LTD.
+;; Copyright © 2016, 2017, JUXT LTD.
 
 ;; A complete development environment for websites in Clojure and
 ;; ClojureScript.
@@ -33,6 +33,10 @@
 
 (set-env!
  :source-paths #{"sass" "src"}
+ :repositories #(conj % ["my.datomic.com"
+                         {:url "https://my.datomic.com/repo"
+                          :username "info@juxt.pro"
+                          :password "a86b5486-0055-49fe-a0be-2204926a4061"}])
  :resource-paths #{"resources"}
  :asset-paths #{"assets"}
  :dependencies
@@ -42,6 +46,11 @@
    [weasel "0.7.0" :scope "test"] ;; Websocket Server
    [deraen/boot-sass "0.3.0" :scope "test"]
    [reloaded.repl "0.2.3" :scope "test"]
+
+   [com.datomic/datomic-free "0.9.5561"
+    :exclusions [org.apache.httpcomponents/httpclient
+                 com.google.guava/guava
+                 org.slf4j/slf4j-nop]]
 
    [org.clojure/clojure "1.9.0-alpha14"]
    [org.clojure/clojurescript "1.9.229"]
